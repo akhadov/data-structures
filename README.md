@@ -1,62 +1,6 @@
 # C# Data Structures
 
-<style>
-/* Improved styling for collapsible sections */
-details {
-  padding: 0.5em 0.5em 0;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f8f9fa;
-  margin-bottom: 0.5em;
-}
 
-details summary {
-  padding: 0.5em;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: -0.5em -0.5em 0;
-  background-color: #e9ecef;
-}
-
-details summary:hover {
-  background-color: #dee2e6;
-}
-
-/* Progressive indentation with subtle visual cues */
-details details {
-  margin-left: 25px;
-  border-left: 2px solid #6c757d;
-  padding-left: 10px;
-  background-color: #ffffff;
-}
-
-details details details {
-  margin-left: 25px;
-  border-left: 2px solid #5a6268;
-}
-
-details details details details {
-  margin-left: 25px;
-  border-left: 2px solid #495057;
-}
-
-/* Code block styling */
-code {
-  background-color: #f1f3f5;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-family: monospace;
-}
-
-pre code {
-  display: block;
-  padding: 10px;
-  overflow-x: auto;
-  line-height: 1.4;
-  border-radius: 4px;
-  border: 1px solid #dee2e6;
-}
-</style>
 
 ## Introduction
 
@@ -64,14 +8,16 @@ Welcome to the C# Data Structures repository! This comprehensive guide explores 
 
 This repository divides data structures into the following categories:
 
+<!-- The nested sections below use increasing indentation for better readability -->
+
 <details>
 <summary><strong>1. Built-in Data Structures</strong></summary>
 
-<details>
-<summary><strong>1.1 Array-Based Collections</strong></summary>
+> <details>
+> <summary><strong>1.1 Array-Based Collections</strong></summary>
 
-<details>
-<summary><strong>Arrays (Single and Multi-dimensional)</strong></summary>
+> > <details>
+> > <summary><strong>Arrays (Single and Multi-dimensional)</strong></summary>
 
 #### Single-dimensional Arrays
 - A contiguous block of memory storing elements of the same type
@@ -88,8 +34,8 @@ This repository divides data structures into the following categories:
   ```
 
 #### Multi-dimensional Arrays
-<details>
-<summary><strong>Rectangular Arrays</strong></summary>
+> > > <details>
+> > > <summary><strong>Rectangular Arrays</strong></summary>
 
 - Each row has the same number of columns
 - Declaration: `type[,] arrayName = new type[rows, columns];`
@@ -103,8 +49,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Jagged Arrays</strong></summary>
+> > > <details>
+> > > <summary><strong>Jagged Arrays</strong></summary>
 
 - Arrays of arrays, where each inner array can have different lengths
 - More flexible than rectangular arrays
@@ -129,8 +75,8 @@ This repository divides data structures into the following categories:
 - Row-major ordering in C# (elements in the same row are stored contiguously)
 </details>
 
-<details>
-<summary><strong>Lists</strong></summary>
+> > <details>
+> > <summary><strong>Lists</strong></summary>
 
 #### List&lt;T&gt;
 - Dynamic array implementation that can resize itself as needed
@@ -172,11 +118,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>1.2 Key-Value Collections</strong></summary>
+> <details>
+> <summary><strong>1.2 Key-Value Collections</strong></summary>
 
-<details>
-<summary><strong>Dictionaries</strong></summary>
+> > <details>
+> > <summary><strong>Dictionaries</strong></summary>
 
 #### Dictionary&lt;TKey, TValue&gt;
 - Collection of key-value pairs with O(1) average lookup time
@@ -215,8 +161,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>HashSets</strong></summary>
+> > <details>
+> > <summary><strong>HashSets</strong></summary>
 
 #### HashSet&lt;T&gt;
 - Collection of unique elements with no specific order
@@ -249,11 +195,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>1.3 FIFO/LIFO Collections</strong></summary>
+> <details>
+> <summary><strong>1.3 FIFO/LIFO Collections</strong></summary>
 
-<details>
-<summary><strong>Queues</strong></summary>
+> > <details>
+> > <summary><strong>Queues</strong></summary>
 
 #### Queue&lt;T&gt;
 - First-in, first-out (FIFO) collection
@@ -292,8 +238,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Stacks</strong></summary>
+> > <details>
+> > <summary><strong>Stacks</strong></summary>
 
 #### Stack&lt;T&gt;
 - Last-in, first-out (LIFO) collection
@@ -325,11 +271,11 @@ This repository divides data structures into the following categories:
 <details>
 <summary><strong>2. Linear Data Structures</strong></summary>
 
-<details>
-<summary><strong>2.1 Linked Lists</strong></summary>
+> <details>
+> <summary><strong>2.1 Linked Lists</strong></summary>
 
-<details>
-<summary><strong>Singly Linked Lists</strong></summary>
+> > <details>
+> > <summary><strong>Singly Linked Lists</strong></summary>
 
 #### Implementation
 - Each node contains data and a reference to the next node
@@ -355,8 +301,8 @@ This repository divides data structures into the following categories:
 - Search: O(n) in worst case
 </details>
 
-<details>
-<summary><strong>Doubly Linked Lists</strong></summary>
+> > <details>
+> > <summary><strong>Doubly Linked Lists</strong></summary>
 
 #### LinkedList&lt;T&gt;
 - Built-in C# implementation of doubly linked list
@@ -389,8 +335,8 @@ This repository divides data structures into the following categories:
 - Advantages over singly linked: Bidirectional traversal, O(1) deletion given the node
 </details>
 
-<details>
-<summary><strong>Circular Linked Lists</strong></summary>
+> > <details>
+> > <summary><strong>Circular Linked Lists</strong></summary>
 
 #### Singly Circular
 - Last node points back to the first node
@@ -405,11 +351,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>2.2 Advanced Linear Structures</strong></summary>
+> <details>
+> <summary><strong>2.2 Advanced Linear Structures</strong></summary>
 
-<details>
-<summary><strong>Skip Lists</strong></summary>
+> > <details>
+> > <summary><strong>Skip Lists</strong></summary>
 
 #### Probabilistic Data Structure
 - Multi-level linked list with probabilistic balancing
@@ -422,8 +368,8 @@ This repository divides data structures into the following categories:
 - Probability-based promotion to higher levels
 </details>
 
-<details>
-<summary><strong>Sparse Arrays</strong></summary>
+> > <details>
+> > <summary><strong>Sparse Arrays</strong></summary>
 
 - Efficiently stores arrays with many default values
 - Only allocates memory for non-default elements
@@ -431,8 +377,8 @@ This repository divides data structures into the following categories:
 - Common in scientific and mathematical applications
 </details>
 
-<details>
-<summary><strong>XOR Linked Lists</strong></summary>
+> > <details>
+> > <summary><strong>XOR Linked Lists</strong></summary>
 
 - Memory-efficient linked list implementation
 - Each node stores XOR of addresses of previous and next nodes
@@ -445,11 +391,11 @@ This repository divides data structures into the following categories:
 <details>
 <summary><strong>3. Tree-based Data Structures</strong></summary>
 
-<details>
-<summary><strong>3.1 Binary Trees</strong></summary>
+> <details>
+> <summary><strong>3.1 Binary Trees</strong></summary>
 
-<details>
-<summary><strong>Basic Binary Trees</strong></summary>
+> > <details>
+> > <summary><strong>Basic Binary Trees</strong></summary>
 
 - Each node has at most two children (left and right)
 - Simple recursive structure
@@ -470,8 +416,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Binary Search Trees</strong></summary>
+> > <details>
+> > <summary><strong>Binary Search Trees</strong></summary>
 
 #### Implementation
 - Ordered binary tree where:
@@ -493,8 +439,8 @@ This repository divides data structures into the following categories:
   - Example: `TraversePostOrder(root.Left); TraversePostOrder(root.Right); Visit(root);`
 </details>
 
-<details>
-<summary><strong>Balanced Trees</strong></summary>
+> > <details>
+> > <summary><strong>Balanced Trees</strong></summary>
 
 #### AVL Trees
 - Self-balancing binary search tree
@@ -515,11 +461,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>3.2 Multi-way Trees</strong></summary>
+> <details>
+> <summary><strong>3.2 Multi-way Trees</strong></summary>
 
-<details>
-<summary><strong>B-Trees</strong></summary>
+> > <details>
+> > <summary><strong>B-Trees</strong></summary>
 
 - Self-balancing tree with multiple keys per node
 - Designed for efficient disk access (block storage)
@@ -527,8 +473,8 @@ This repository divides data structures into the following categories:
 - Used in databases and file systems
 </details>
 
-<details>
-<summary><strong>B+ Trees</strong></summary>
+> > <details>
+> > <summary><strong>B+ Trees</strong></summary>
 
 - Variant of B-tree where:
   - Only leaf nodes store data
@@ -537,16 +483,16 @@ This repository divides data structures into the following categories:
 - Optimized for range queries and disk-based storage
 </details>
 
-<details>
-<summary><strong>2-3 Trees</strong></summary>
+> > <details>
+> > <summary><strong>2-3 Trees</strong></summary>
 
 - Each node has 2 or 3 children
 - All leaf nodes at same depth
 - Simpler than B-trees but still self-balancing
 </details>
 
-<details>
-<summary><strong>2-3-4 Trees</strong></summary>
+> > <details>
+> > <summary><strong>2-3-4 Trees</strong></summary>
 
 - Each node can have 2, 3, or 4 children
 - Equivalent to red-black trees (1-to-1 mapping)
@@ -554,11 +500,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>3.3 Specialized Trees</strong></summary>
+> <details>
+> <summary><strong>3.3 Specialized Trees</strong></summary>
 
-<details>
-<summary><strong>Tries (Prefix Trees)</strong></summary>
+> > <details>
+> > <summary><strong>Tries (Prefix Trees)</strong></summary>
 
 - Tree for storing strings
 - Each node represents a character
@@ -578,8 +524,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Radix Trees</strong></summary>
+> > <details>
+> > <summary><strong>Radix Trees</strong></summary>
 
 - Compressed version of trie
 - Collapses single-child nodes
@@ -587,8 +533,8 @@ This repository divides data structures into the following categories:
 - Used in IP routing and longest prefix matching
 </details>
 
-<details>
-<summary><strong>Suffix Trees</strong></summary>
+> > <details>
+> > <summary><strong>Suffix Trees</strong></summary>
 
 - Specialized for substring searches
 - Contains all suffixes of a string
@@ -596,16 +542,16 @@ This repository divides data structures into the following categories:
 - Applications in text processing, bioinformatics
 </details>
 
-<details>
-<summary><strong>Quad Trees</strong></summary>
+> > <details>
+> > <summary><strong>Quad Trees</strong></summary>
 
 - Each node has exactly 4 children
 - Used for 2D space partitioning
 - Applications in image processing, collision detection
 </details>
 
-<details>
-<summary><strong>Octrees</strong></summary>
+> > <details>
+> > <summary><strong>Octrees</strong></summary>
 
 - 3D version of quad tree
 - Each node has 8 children
@@ -618,11 +564,11 @@ This repository divides data structures into the following categories:
 <details>
 <summary><strong>4. Graph Data Structures</strong></summary>
 
-<details>
-<summary><strong>4.1 Graph Representations</strong></summary>
+> <details>
+> <summary><strong>4.1 Graph Representations</strong></summary>
 
-<details>
-<summary><strong>Adjacency Matrix</strong></summary>
+> > <details>
+> > <summary><strong>Adjacency Matrix</strong></summary>
 
 - 2D array where matrix[i][j] indicates edge from i to j
 - Fast edge lookup: O(1)
@@ -635,8 +581,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Adjacency List</strong></summary>
+> > <details>
+> > <summary><strong>Adjacency List</strong></summary>
 
 - Array of lists, each representing connections from a vertex
 - Memory-efficient for sparse graphs: O(V+E)
@@ -651,8 +597,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Incidence Matrix</strong></summary>
+> > <details>
+> > <summary><strong>Incidence Matrix</strong></summary>
 
 - Matrix of vertices × edges
 - Each column represents an edge
@@ -662,27 +608,27 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>4.2 Graph Types</strong></summary>
+> <details>
+> <summary><strong>4.2 Graph Types</strong></summary>
 
-<details>
-<summary><strong>Directed Graphs (Digraphs)</strong></summary>
+> > <details>
+> > <summary><strong>Directed Graphs (Digraphs)</strong></summary>
 
 - Edges have direction
 - Edge (u,v) is distinct from (v,u)
 - Applications: network flows, precedence constraints
 </details>
 
-<details>
-<summary><strong>Undirected Graphs</strong></summary>
+> > <details>
+> > <summary><strong>Undirected Graphs</strong></summary>
 
 - Edges have no direction
 - Edge (u,v) is identical to (v,u)
 - Applications: social networks, road maps
 </details>
 
-<details>
-<summary><strong>Weighted Graphs</strong></summary>
+> > <details>
+> > <summary><strong>Weighted Graphs</strong></summary>
 
 - Edges have associated weights/costs
 - Used in shortest path algorithms
@@ -695,8 +641,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Directed Acyclic Graphs (DAGs)</strong></summary>
+> > <details>
+> > <summary><strong>Directed Acyclic Graphs (DAGs)</strong></summary>
 
 - Directed graph with no cycles
 - Many applications: scheduling, dependency resolution
@@ -704,11 +650,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>4.3 Graph Operations</strong></summary>
+> <details>
+> <summary><strong>4.3 Graph Operations</strong></summary>
 
-<details>
-<summary><strong>Graph Traversal (BFS, DFS)</strong></summary>
+> > <details>
+> > <summary><strong>Graph Traversal (BFS, DFS)</strong></summary>
 
 #### Breadth-First Search (BFS)
 - Uses queue to visit neighbors before going deeper
@@ -749,8 +695,8 @@ This repository divides data structures into the following categories:
   ```
 </details>
 
-<details>
-<summary><strong>Minimum Spanning Trees</strong></summary>
+> > <details>
+> > <summary><strong>Minimum Spanning Trees</strong></summary>
 
 - Subset of edges connecting all vertices with minimum total weight
 - Algorithms:
@@ -759,8 +705,8 @@ This repository divides data structures into the following categories:
 - Applications: network design, clustering
 </details>
 
-<details>
-<summary><strong>Shortest Path Algorithms</strong></summary>
+> > <details>
+> > <summary><strong>Shortest Path Algorithms</strong></summary>
 
 - Finding minimum cost paths between vertices
 - Algorithms:
@@ -775,11 +721,11 @@ This repository divides data structures into the following categories:
 <details>
 <summary><strong>5. Advanced Data Structures</strong></summary>
 
-<details>
-<summary><strong>5.1 Heaps and Priority Structures</strong></summary>
+> <details>
+> <summary><strong>5.1 Heaps and Priority Structures</strong></summary>
 
-<details>
-<summary><strong>Priority Queues</strong></summary>
+> > <details>
+> > <summary><strong>Priority Queues</strong></summary>
 
 - Abstract data type where elements have priorities
 - Highest (or lowest) priority element is accessed first
@@ -788,8 +734,8 @@ This repository divides data structures into the following categories:
 - Implementation typically uses binary heap
 </details>
 
-<details>
-<summary><strong>Binary Heaps</strong></summary>
+> > <details>
+> > <summary><strong>Binary Heaps</strong></summary>
 
 #### Min Heap
 - Complete binary tree where each node ≤ its children
@@ -807,8 +753,8 @@ This repository divides data structures into the following categories:
 - Used for heap sort, finding k largest elements
 </details>
 
-<details>
-<summary><strong>Fibonacci Heaps</strong></summary>
+> > <details>
+> > <summary><strong>Fibonacci Heaps</strong></summary>
 
 - More complex heap implementation
 - Better amortized bounds for some operations
@@ -817,11 +763,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>5.2 Probabilistic Data Structures</strong></summary>
+> <details>
+> <summary><strong>5.2 Probabilistic Data Structures</strong></summary>
 
-<details>
-<summary><strong>Bloom Filters</strong></summary>
+> > <details>
+> > <summary><strong>Bloom Filters</strong></summary>
 
 - Space-efficient probabilistic set membership test
 - Can result in false positives but never false negatives
@@ -829,8 +775,8 @@ This repository divides data structures into the following categories:
 - Applications: caching, spell checking, web crawling
 </details>
 
-<details>
-<summary><strong>Count-Min Sketch</strong></summary>
+> > <details>
+> > <summary><strong>Count-Min Sketch</strong></summary>
 
 - Estimates frequency of elements in a stream
 - Compact representation using multiple hash functions
@@ -838,8 +784,8 @@ This repository divides data structures into the following categories:
 - Applications: frequency counting in large data streams
 </details>
 
-<details>
-<summary><strong>HyperLogLog</strong></summary>
+> > <details>
+> > <summary><strong>HyperLogLog</strong></summary>
 
 - Estimates cardinality (count of distinct elements)
 - Very memory efficient (sub-linear in cardinality)
@@ -847,11 +793,11 @@ This repository divides data structures into the following categories:
 </details>
 </details>
 
-<details>
-<summary><strong>5.3 Specialized Data Structures</strong></summary>
+> <details>
+> <summary><strong>5.3 Specialized Data Structures</strong></summary>
 
-<details>
-<summary><strong>Disjoint Set (Union-Find)</strong></summary>
+> > <details>
+> > <summary><strong>Disjoint Set (Union-Find)</strong></summary>
 
 - Keeps track of elements partitioned into disjoint sets
 - Operations: Find, Union
@@ -859,8 +805,8 @@ This repository divides data structures into the following categories:
 - Applications: Kruskal's algorithm, connected components
 </details>
 
-<details>
-<summary><strong>Segment Trees</strong></summary>
+> > <details>
+> > <summary><strong>Segment Trees</strong></summary>
 
 - Tree for storing intervals or segments
 - Efficient range queries
@@ -868,24 +814,24 @@ This repository divides data structures into the following categories:
 - Applications: range minimum/maximum queries
 </details>
 
-<details>
-<summary><strong>Fenwick Trees (Binary Indexed Trees)</strong></summary>
+> > <details>
+> > <summary><strong>Fenwick Trees (Binary Indexed Trees)</strong></summary>
 
 - Efficiently updates elements and calculates prefix sums
 - More compact than segment trees for some operations
 - Applications: frequency tables, range sum queries
 </details>
 
-<details>
-<summary><strong>Sparse Tables</strong></summary>
+> > <details>
+> > <summary><strong>Sparse Tables</strong></summary>
 
 - Precomputed data structure for range queries
 - O(1) for immutable range queries
 - Applications: Range Minimum Query (RMQ)
 </details>
 
-<details>
-<summary><strong>Interval Trees</strong></summary>
+> > <details>
+> > <summary><strong>Interval Trees</strong></summary>
 
 - Stores intervals efficiently
 - Fast intersection queries
