@@ -9,6 +9,55 @@ This repository divides data structures into the following categories:
 ### 1. Built-in Data Structures
 #### 1.1 Array-Based Collections
 - Arrays (Single and Multi-dimensional)
+  - **Single-dimensional Arrays**
+    - A contiguous block of memory storing elements of the same type
+    - Zero-based indexing (accessing elements via `array[index]`)
+    - Fixed size once initialized, cannot grow or shrink dynamically
+    - Declaration: `type[] arrayName = new type[size];`
+    - Time complexity: O(1) for random access, O(n) for insertion/deletion
+    - Common operations: indexing, iterating, sorting, searching, filtering
+    - Example:
+      ```csharp
+      int[] numbers = new int[5]; // Creates array of 5 integers
+      numbers[0] = 10;            // Assigns value to first element
+      int value = numbers[0];     // Retrieves first element
+      ```
+    
+  - **Multi-dimensional Arrays**
+    - **Rectangular Arrays** 
+      - Each row has the same number of columns
+      - Declaration: `type[,] arrayName = new type[rows, columns];`
+      - Accessed via `array[row, column]`
+      - Memory-efficient for matrix operations
+      - Example:
+        ```csharp
+        int[,] matrix = new int[3, 4]; // 3 rows, 4 columns
+        matrix[0, 0] = 1;              // First element
+        int value = matrix[2, 3];      // Last element
+        ```
+    
+    - **Jagged Arrays** 
+      - Arrays of arrays, where each inner array can have different lengths
+      - More flexible than rectangular arrays
+      - Declaration: `type[][] arrayName = new type[outerSize][];`
+      - Each inner array must be initialized separately
+      - Accessed via `array[outerIndex][innerIndex]`
+      - Example:
+        ```csharp
+        int[][] jaggedArray = new int[3][];
+        jaggedArray[0] = new int[4];   // First row has 4 columns
+        jaggedArray[1] = new int[2];   // Second row has 2 columns
+        jaggedArray[2] = new int[5];   // Third row has 5 columns
+        jaggedArray[0][0] = 1;         // Assigns value to first element
+        ```
+
+  - **Performance Considerations**
+    - Arrays provide the fastest access time among collections
+    - Memory is allocated contiguously, which improves cache locality
+    - Fixed size can lead to inefficiency when the number of elements is unknown
+    - For operations requiring frequent resizing, consider using `List<T>`
+    - Row-major ordering in C# (elements in the same row are stored contiguously)
+
 - Lists
   - List<T>
   - ArrayList (Legacy)
