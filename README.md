@@ -1,62 +1,6 @@
 # C# Data Structures
 
-<style>
-/* Improved styling for collapsible sections */
-details {
-  padding: 0.5em 0.5em 0;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f8f9fa;
-  margin-bottom: 0.5em;
-}
-
-details summary {
-  padding: 0.5em;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: -0.5em -0.5em 0;
-  background-color: #e9ecef;
-}
-
-details summary:hover {
-  background-color: #dee2e6;
-}
-
-/* Progressive indentation with subtle visual cues */
-details details {
-  margin-left: 25px;
-  border-left: 2px solid #6c757d;
-  padding-left: 10px;
-  background-color: #ffffff;
-}
-
-details details details {
-  margin-left: 25px;
-  border-left: 2px solid #5a6268;
-}
-
-details details details details {
-  margin-left: 25px;
-  border-left: 2px solid #495057;
-}
-
-/* Code block styling */
-code {
-  background-color: #f1f3f5;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-family: monospace;
-}
-
-pre code {
-  display: block;
-  padding: 10px;
-  overflow-x: auto;
-  line-height: 1.4;
-  border-radius: 4px;
-  border: 1px solid #dee2e6;
-}
-</style>
+![Custom Header](./customstyle.svg)
 
 ## Introduction
 

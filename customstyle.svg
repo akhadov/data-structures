@@ -1,0 +1,165 @@
+<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        /* Main container styling */
+        .container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          padding: 20px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          border-radius: 10px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Header styling */
+        .header {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: white;
+          margin-bottom: 20px;
+        }
+        
+        /* Title styling */
+        .title {
+          font-size: 2.5em;
+          font-weight: bold;
+          margin-bottom: 5px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          text-align: center;
+        }
+        
+        /* Animation for the wave emoji */
+        @keyframes wave {
+          0% { transform: rotate(0deg); }
+          20% { transform: rotate(15deg); }
+          40% { transform: rotate(0deg); }
+          60% { transform: rotate(-15deg); }
+          80% { transform: rotate(0deg); }
+          100% { transform: rotate(0deg); }
+        }
+        
+        .wave {
+          display: inline-block;
+          animation: wave 2.5s infinite;
+          transform-origin: 70% 70%;
+          font-size: 1.2em;
+        }
+        
+        /* Subtitle styling */
+        .subtitle {
+          font-size: 1.2em;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.9);
+          text-align: center;
+        }
+        
+        /* Categories container */
+        .categories {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 15px;
+          margin-top: 20px;
+          width: 100%;
+        }
+        
+        /* Category box styling */
+        .category-box {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          padding: 10px 15px;
+          color: white;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: transform 0.3s ease, background-color 0.3s ease;
+          text-align: center;
+          width: calc(33% - 20px);
+          min-width: 180px;
+        }
+        
+        .category-box:hover {
+          transform: translateY(-5px);
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .category-title {
+          font-weight: bold;
+          font-size: 1.1em;
+          margin-bottom: 5px;
+        }
+        
+        .category-count {
+          font-size: 0.9em;
+          opacity: 0.9;
+        }
+        
+        /* Stats container */
+        .stats {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 25px;
+          width: 100%;
+        }
+        
+        /* Stats visualization */
+        .stat-bar-container {
+          width: 80%;
+          height: 35px;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 17px;
+          overflow: hidden;
+          position: relative;
+        }
+        
+        .stat-bar {
+          height: 100%;
+          background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+          width: 75%;
+          border-radius: 17px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: bold;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+      </style>
+
+      <div class="container">
+        <div class="header">
+          <div class="title">C# Data Structures <span class="wave">📚</span></div>
+          <div class="subtitle">A Comprehensive Guide to Data Structures in C#</div>
+        </div>
+        
+        <div class="categories">
+          <div class="category-box">
+            <div class="category-title">Built-in Collections</div>
+            <div class="category-count">Arrays, Lists, Dictionaries</div>
+          </div>
+          <div class="category-box">
+            <div class="category-title">Linear Structures</div>
+            <div class="category-count">Linked Lists, Stacks, Queues</div>
+          </div>
+          <div class="category-box">
+            <div class="category-title">Trees & Graphs</div>
+            <div class="category-count">BST, AVL, B-Trees, Networks</div>
+          </div>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-bar-container">
+            <div class="stat-bar">100+ Data Structure Implementations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
