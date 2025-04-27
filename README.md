@@ -1,11 +1,7 @@
 # C# Data Structures
 
 <details>
-<summary>
-
-## <font color="blue" size="6">Arrays</font>
-
-</summary>
+# <summary><span style="color:#0d47a1;">Arrays</span>/collapse</summary>
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
