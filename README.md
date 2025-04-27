@@ -1,9 +1,9 @@
 # C# Data Structures
 
-### <details>
-<summary><span style="color:blue">Arrays</span></summary>
+<details>
+<summary><span style="color:blue"><strong>Arrays</strong></span></summary>
 
-#### Declaration
+#### <span style="color:blue">Declaration</span>
 ```csharp
 // Single-dimensional array
 type[] arrayName;
@@ -15,7 +15,7 @@ type[,] arrayName;
 type[][] arrayName;
 ```
 
-#### Initialization
+#### <span style="color:blue">Initialization</span>
 ```csharp
 // Single-dimensional array
 int[] numbers = new int[5];  // Creates array of 5 integers with default values
@@ -33,7 +33,7 @@ jaggedArray[1] = new int[] { 4, 5 };
 jaggedArray[2] = new int[] { 6, 7, 8, 9 };
 ```
 
-#### Accessing Elements
+#### <span style="color:blue">Accessing Elements</span>
 ```csharp
 // Single-dimensional array
 int value = numbers[0];  // Access the first element
@@ -48,7 +48,7 @@ int value = jaggedArray[0][1];  // Access second element of first array
 jaggedArray[0][1] = 20;         // Modify second element of first array
 ```
 
-#### Adding and Removing Elements
+#### <span style="color:blue">Adding and Removing Elements</span>
 ```csharp
 // Arrays in C# have fixed size after creation, so to "add" or "remove" elements:
 
@@ -69,10 +69,10 @@ Array.Copy(numbers, 0, smallerArray, 0, indexToRemove);
 Array.Copy(numbers, indexToRemove + 1, smallerArray, indexToRemove, numbers.Length - indexToRemove - 1);
 ```
 
-#### Methods
+#### <span style="color:green">Methods</span>
 
 <details>
-<summary>Array.Sort()</summary>
+<summary><span style="color:blue">Array.Sort()</span></summary>
 
 ```csharp
 // Sort array in ascending order
@@ -93,7 +93,7 @@ Array.Sort(ages, names);  // Sort names based on ages
 </details>
 
 <details>
-<summary>Array.Reverse()</summary>
+<summary><span style="color:blue">Array.Reverse()</span></summary>
 
 ```csharp
 // Reverse entire array
@@ -109,7 +109,7 @@ Array.Reverse(values, 1, 3);  // Reverse 3 elements starting at index 1
 </details>
 
 <details>
-<summary>Array.Clear()</summary>
+<summary><span style="color:blue">Array.Clear()</span></summary>
 
 ```csharp
 // Clear entire array (set to default values)
@@ -125,7 +125,7 @@ Array.Clear(names, 1, 2);  // Clear 2 elements starting at index 1
 </details>
 
 <details>
-<summary>Array.Copy()</summary>
+<summary><span style="color:blue">Array.Copy()</span></summary>
 
 ```csharp
 // Copy entire array
@@ -142,7 +142,7 @@ Array.Copy(source, 1, partial, 0, 3);
 </details>
 
 <details>
-<summary>Array.IndexOf() / LastIndexOf()</summary>
+<summary><span style="color:blue">Array.IndexOf() / LastIndexOf()</span></summary>
 
 ```csharp
 // Find first occurrence
@@ -161,7 +161,7 @@ int rangeIndex = Array.IndexOf(numbers, 20, 2);  // Start from index 2
 </details>
 
 <details>
-<summary>Array.Resize()</summary>
+<summary><span style="color:blue">Array.Resize()</span></summary>
 
 ```csharp
 // Increase array size
@@ -177,7 +177,7 @@ Array.Resize(ref values, 3);
 </details>
 
 <details>
-<summary>Array.Find() / FindAll()</summary>
+<summary><span style="color:blue">Array.Find() / FindAll()</span></summary>
 
 ```csharp
 // Find first matching element
@@ -196,7 +196,7 @@ int greaterThanTen = Array.Find(numbers, n => n > 10);
 </details>
 
 <details>
-<summary>Array.Exists() / TrueForAll()</summary>
+<summary><span style="color:blue">Array.Exists() / TrueForAll()</span></summary>
 
 ```csharp
 // Check if any element satisfies a condition
@@ -211,7 +211,7 @@ bool allPositive = Array.TrueForAll(numbers, n => n > 0);
 </details>
 
 <details>
-<summary>Array.ConvertAll()</summary>
+<summary><span style="color:blue">Array.ConvertAll()</span></summary>
 
 ```csharp
 // Convert array elements to different type
@@ -225,10 +225,10 @@ double[] doubles = Array.ConvertAll(numbers, n => n * 1.5);
 ```
 </details>
 
-#### Properties
+#### <span style="color:blue">Properties</span>
 
 <details>
-<summary>Array Properties</summary>
+<summary><span style="color:blue">Array Properties</span></summary>
 
 ```csharp
 // Get array length
