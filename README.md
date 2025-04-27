@@ -1166,7 +1166,7 @@ int capacity = words.EnsureCapacity(0);  // Returns current capacity without cha
 <summary><span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span></summary>
 
 <details>
-<summary><span>$\Large\color{#4FC3F7}{Queue\<T\>}$</span></summary>
+<summary><span>$\Large\color{#4FC3F7}{Queue<T>}$</span></summary>
 
 #### <span>$\large\color{#4FC3F7}{Declaration}$</span>
 ```csharp
@@ -1429,7 +1429,7 @@ void Consumer()
 </details>
 
 <details>
-<summary><span>$\Large\color{#4FC3F7}{Stack\<T\>}$</span></summary>
+<summary><span>$\Large\color{#4FC3F7}{Stack<T>}$</span></summary>
 
 #### <span>$\large\color{#4FC3F7}{Declaration}$</span>
 ```csharp
