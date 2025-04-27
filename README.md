@@ -3,7 +3,7 @@
 <details>
 <summary><span>$\Large\color{#4FC3F7}{Arrays}$</span></summary>
 
-#### <span style="color:blue">Declaration</span>
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
 ```csharp
 // Single-dimensional array
 type[] arrayName;
@@ -15,7 +15,7 @@ type[,] arrayName;
 type[][] arrayName;
 ```
 
-#### <span style="color:blue">Initialization</span>
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
 ```csharp
 // Single-dimensional array
 int[] numbers = new int[5];  // Creates array of 5 integers with default values
@@ -33,7 +33,7 @@ jaggedArray[1] = new int[] { 4, 5 };
 jaggedArray[2] = new int[] { 6, 7, 8, 9 };
 ```
 
-#### <span style="color:blue">Accessing Elements</span>
+#### <span>$\large\color{#4FC3F7}{Accessing Elements}$</span>
 ```csharp
 // Single-dimensional array
 int value = numbers[0];  // Access the first element
@@ -48,7 +48,7 @@ int value = jaggedArray[0][1];  // Access second element of first array
 jaggedArray[0][1] = 20;         // Modify second element of first array
 ```
 
-#### <span style="color:blue">Adding and Removing Elements</span>
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
 ```csharp
 // Arrays in C# have fixed size after creation, so to "add" or "remove" elements:
 
@@ -69,10 +69,10 @@ Array.Copy(numbers, 0, smallerArray, 0, indexToRemove);
 Array.Copy(numbers, indexToRemove + 1, smallerArray, indexToRemove, numbers.Length - indexToRemove - 1);
 ```
 
-#### <span style="color:green">Methods</span>
+#### <span>$\large\color{#4CAF50}{Methods}$</span>
 
 <details>
-<summary><span style="color:blue">Array.Sort()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Sort()}$</span></summary>
 
 ```csharp
 // Sort array in ascending order
@@ -93,7 +93,7 @@ Array.Sort(ages, names);  // Sort names based on ages
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Reverse()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Reverse()}$</span></summary>
 
 ```csharp
 // Reverse entire array
@@ -109,7 +109,7 @@ Array.Reverse(values, 1, 3);  // Reverse 3 elements starting at index 1
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Clear()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Clear()}$</span></summary>
 
 ```csharp
 // Clear entire array (set to default values)
@@ -125,7 +125,7 @@ Array.Clear(names, 1, 2);  // Clear 2 elements starting at index 1
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Copy()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Copy()}$</span></summary>
 
 ```csharp
 // Copy entire array
@@ -142,7 +142,7 @@ Array.Copy(source, 1, partial, 0, 3);
 </details>
 
 <details>
-<summary><span style="color:blue">Array.IndexOf() / LastIndexOf()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.IndexOf() / LastIndexOf()}$</span></summary>
 
 ```csharp
 // Find first occurrence
@@ -161,7 +161,7 @@ int rangeIndex = Array.IndexOf(numbers, 20, 2);  // Start from index 2
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Resize()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Resize()}$</span></summary>
 
 ```csharp
 // Increase array size
@@ -177,7 +177,7 @@ Array.Resize(ref values, 3);
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Find() / FindAll()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Find() / FindAll()}$</span></summary>
 
 ```csharp
 // Find first matching element
@@ -196,7 +196,7 @@ int greaterThanTen = Array.Find(numbers, n => n > 10);
 </details>
 
 <details>
-<summary><span style="color:blue">Array.Exists() / TrueForAll()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.Exists() / TrueForAll()}$</span></summary>
 
 ```csharp
 // Check if any element satisfies a condition
@@ -211,7 +211,7 @@ bool allPositive = Array.TrueForAll(numbers, n => n > 0);
 </details>
 
 <details>
-<summary><span style="color:blue">Array.ConvertAll()</span></summary>
+<summary><span>$\color{#4CAF50}{Array.ConvertAll()}$</span></summary>
 
 ```csharp
 // Convert array elements to different type
@@ -225,10 +225,10 @@ double[] doubles = Array.ConvertAll(numbers, n => n * 1.5);
 ```
 </details>
 
-#### <span style="color:blue">Properties</span>
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
 
 <details>
-<summary><span style="color:blue">Array Properties</span></summary>
+<summary><span>$\color{#4FC3F7}{Array Properties}$</span></summary>
 
 ```csharp
 // Get array length
