@@ -1,7 +1,8 @@
 # C# Data Structures
 
+## 🔷 Arrays
 <details>
-<summary><span style="color:blue"><strong>Arrays</strong></span></summary>
+<summary><b>Click to expand</b></summary>
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
