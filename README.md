@@ -1162,10 +1162,587 @@ int capacity = words.EnsureCapacity(0);  // Returns current capacity without cha
 
 </details>
 
+## <span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span>
+
 <details>
-<summary><span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span></summary>
-- Queue<T>
-- Stack<T>
+<summary><span>$\Large\color{#4FC3F7}{Queue\<T\>}$</span></summary>
+
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
+```csharp
+// Generic Queue
+Queue<type> queueName;
+
+// Examples
+Queue<int> numberQueue;
+Queue<string> messageQueue;
+Queue<Customer> customerQueue;  // Custom type
+```
+
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
+```csharp
+// Empty queue
+Queue<int> numbers = new Queue<int>();
+
+// Queue with initial capacity
+Queue<string> messages = new Queue<string>(100);  // Space for 100 items
+
+// Initialize from an array or collection
+string[] array = { "First", "Second", "Third" };
+Queue<string> fromArray = new Queue<string>(array);
+```
+
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
+```csharp
+Queue<string> customers = new Queue<string>();
+
+// Add elements to the end of the queue
+customers.Enqueue("Alice");
+customers.Enqueue("Bob");
+customers.Enqueue("Charlie");  // Queue now contains: Alice, Bob, Charlie
+
+// Remove and return element from the front of the queue
+string next = customers.Dequeue();  // Removes "Alice"
+// Queue now contains: Bob, Charlie
+
+// Look at the element at the front without removing
+string peek = customers.Peek();  // Returns "Bob" without removing
+
+// Try to dequeue safely
+if (customers.Count > 0)
+{
+    string customer = customers.Dequeue();
+}
+
+// Clear the queue
+customers.Clear();  // Remove all elements
+```
+
+#### <span>$\large\color{#f5750e}{Methods}$</span>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T>.Contains()}$</span></summary>
+
+```csharp
+Queue<string> tasks = new Queue<string>();
+tasks.Enqueue("Read emails");
+tasks.Enqueue("Write report");
+tasks.Enqueue("Attend meeting");
+
+// Check if queue contains an element
+bool hasTask = tasks.Contains("Write report");  // true
+bool noTask = tasks.Contains("Take lunch");     // false
+
+// Note: Contains() performs a linear search (O(n))
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T>.CopyTo()}$</span></summary>
+
+```csharp
+Queue<int> numbers = new Queue<int>();
+numbers.Enqueue(10);
+numbers.Enqueue(20);
+numbers.Enqueue(30);
+
+// Copy to array
+int[] array = new int[numbers.Count];
+numbers.CopyTo(array, 0);
+// Result: array = { 10, 20, 30 } in queue order (oldest to newest)
+
+// Copy with offset
+int[] largerArray = new int[5];
+largerArray[0] = -1;
+largerArray[1] = -2;
+numbers.CopyTo(largerArray, 2);
+// Result: largerArray = { -1, -2, 10, 20, 30 }
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T>.ToArray()}$</span></summary>
+
+```csharp
+Queue<char> letters = new Queue<char>();
+letters.Enqueue('A');
+letters.Enqueue('B');
+letters.Enqueue('C');
+
+// Convert queue to array
+char[] array = letters.ToArray();
+// Result: array = { 'A', 'B', 'C' } in queue order
+
+// Useful for creating a snapshot of the queue
+foreach (char letter in letters.ToArray())
+{
+    Console.WriteLine(letter);
+    // Safe to modify queue here if needed
+}
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T>.TrimExcess()}$</span></summary>
+
+```csharp
+// Memory optimization
+Queue<string> messages = new Queue<string>(1000);  // Start with large capacity
+
+// Add some items
+for (int i = 0; i < 100; i++)
+{
+    messages.Enqueue($"Message {i}");
+}
+
+// Process and remove many items
+for (int i = 0; i < 90; i++)
+{
+    messages.Dequeue();
+}
+
+// Trim excess capacity
+messages.TrimExcess();  // Reduces memory usage when actual count is much less than capacity
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T> with LINQ}$</span></summary>
+
+```csharp
+Queue<int> numbers = new Queue<int>();
+for (int i = 1; i <= 10; i++)
+{
+    numbers.Enqueue(i);
+}
+
+// Filter with LINQ
+var evenNumbers = numbers.Where(n => n % 2 == 0);
+// Result: { 2, 4, 6, 8, 10 } as IEnumerable<int>
+
+// Transform with LINQ
+var doubledNumbers = numbers.Select(n => n * 2);
+// Result: { 2, 4, 6, 8, ..., 20 } as IEnumerable<int>
+
+// Find specific elements
+bool anyGreaterThanTen = numbers.Any(n => n > 10);  // false
+int sum = numbers.Sum();  // 55
+
+// Note: LINQ operations don't modify the original queue
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Queue<T>.GetEnumerator()}$</span></summary>
+
+```csharp
+Queue<string> tasks = new Queue<string>();
+tasks.Enqueue("Task 1");
+tasks.Enqueue("Task 2");
+tasks.Enqueue("Task 3");
+
+// Standard iteration (doesn't modify the queue)
+foreach (string task in tasks)
+{
+    Console.WriteLine(task);
+}
+
+// Using enumerator directly
+using (IEnumerator<string> enumerator = tasks.GetEnumerator())
+{
+    while (enumerator.MoveNext())
+    {
+        string current = enumerator.Current;
+        Console.WriteLine(current);
+    }
+}
+
+// Process all items in queue order (modifies the queue)
+while (tasks.Count > 0)
+{
+    string currentTask = tasks.Dequeue();
+    Console.WriteLine($"Processing: {currentTask}");
+}
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
+
+<details>
+<summary><span>$\color{#4FC3F7}{Queue<T> Properties}$</span></summary>
+
+```csharp
+Queue<int> numbers = new Queue<int>();
+numbers.Enqueue(10);
+numbers.Enqueue(20);
+numbers.Enqueue(30);
+
+// Get item count
+int count = numbers.Count;  // 3
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Common Usage Patterns}$</span>
+```csharp
+// BFS (Breadth-First Search) using a Queue
+Queue<Node> nodesToVisit = new Queue<Node>();
+nodesToVisit.Enqueue(rootNode);
+
+while (nodesToVisit.Count > 0)
+{
+    Node current = nodesToVisit.Dequeue();
+    
+    // Process current node
+    Console.WriteLine(current.Value);
+    
+    // Add child nodes to the queue
+    foreach (Node child in current.Children)
+    {
+        nodesToVisit.Enqueue(child);
+    }
+}
+
+// Producer-Consumer pattern
+Queue<Task> taskQueue = new Queue<Task>();
+
+// Producer adds tasks
+void Producer()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        Task task = new Task { Id = i, Description = $"Task {i}" };
+        taskQueue.Enqueue(task);
+    }
+}
+
+// Consumer processes tasks
+void Consumer()
+{
+    while (taskQueue.Count > 0)
+    {
+        Task task = taskQueue.Dequeue();
+        ProcessTask(task);
+    }
+}
+```
+
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Stack\<T\>}$</span></summary>
+
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
+```csharp
+// Generic Stack
+Stack<type> stackName;
+
+// Examples
+Stack<int> numberStack;
+Stack<string> historyStack;
+Stack<Frame> callStack;  // Custom type
+```
+
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
+```csharp
+// Empty stack
+Stack<int> numbers = new Stack<int>();
+
+// Stack with initial capacity
+Stack<string> history = new Stack<string>(100);  // Space for 100 items
+
+// Initialize from an array or collection
+string[] array = { "First", "Second", "Third" };
+Stack<string> fromArray = new Stack<string>(array);
+// Note: Items are pushed in reverse order
+// Stack will be: Third, Second, First (top)
+```
+
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
+```csharp
+Stack<string> pages = new Stack<string>();
+
+// Add elements to the top of the stack
+pages.Push("Home Page");
+pages.Push("Products Page");
+pages.Push("Product Details Page");  // Stack now contains: Home, Products, Details (top)
+
+// Remove and return element from the top of the stack
+string current = pages.Pop();  // Removes "Product Details Page"
+// Stack now contains: Home Page, Products Page
+
+// Look at the element at the top without removing
+string peek = pages.Peek();  // Returns "Products Page" without removing
+
+// Try to pop safely
+if (pages.Count > 0)
+{
+    string page = pages.Pop();
+}
+
+// Clear the stack
+pages.Clear();  // Remove all elements
+```
+
+#### <span>$\large\color{#f5750e}{Methods}$</span>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T>.Contains()}$</span></summary>
+
+```csharp
+Stack<string> history = new Stack<string>();
+history.Push("Page 1");
+history.Push("Page 2");
+history.Push("Page 3");
+
+// Check if stack contains an element
+bool hasPage = history.Contains("Page 2");  // true
+bool noPage = history.Contains("Page 4");   // false
+
+// Note: Contains() performs a linear search (O(n))
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T>.CopyTo()}$</span></summary>
+
+```csharp
+Stack<int> numbers = new Stack<int>();
+numbers.Push(10);
+numbers.Push(20);
+numbers.Push(30);
+
+// Copy to array
+int[] array = new int[numbers.Count];
+numbers.CopyTo(array, 0);
+// Result: array = { 30, 20, 10 } in stack order (newest to oldest)
+
+// Copy with offset
+int[] largerArray = new int[5];
+largerArray[0] = -1;
+largerArray[1] = -2;
+numbers.CopyTo(largerArray, 2);
+// Result: largerArray = { -1, -2, 30, 20, 10 }
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T>.ToArray()}$</span></summary>
+
+```csharp
+Stack<char> letters = new Stack<char>();
+letters.Push('A');
+letters.Push('B');
+letters.Push('C');
+
+// Convert stack to array
+char[] array = letters.ToArray();
+// Result: array = { 'C', 'B', 'A' } in stack order (top to bottom)
+
+// Useful for creating a snapshot of the stack
+foreach (char letter in letters.ToArray())
+{
+    Console.WriteLine(letter);
+    // Safe to modify stack here if needed
+}
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T>.TrimExcess()}$</span></summary>
+
+```csharp
+// Memory optimization
+Stack<string> history = new Stack<string>(1000);  // Start with large capacity
+
+// Add some items
+for (int i = 0; i < 100; i++)
+{
+    history.Push($"State {i}");
+}
+
+// Process and remove many items
+for (int i = 0; i < 90; i++)
+{
+    history.Pop();
+}
+
+// Trim excess capacity
+history.TrimExcess();  // Reduces memory usage when actual count is much less than capacity
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T> with LINQ}$</span></summary>
+
+```csharp
+Stack<int> numbers = new Stack<int>();
+for (int i = 1; i <= 5; i++)
+{
+    numbers.Push(i);
+}
+// Stack: 5 (top), 4, 3, 2, 1
+
+// Filter with LINQ
+var evenNumbers = numbers.Where(n => n % 2 == 0);
+// Result: { 4, 2 } as IEnumerable<int>
+
+// Transform with LINQ
+var doubledNumbers = numbers.Select(n => n * 2);
+// Result: { 10, 8, 6, 4, 2 } as IEnumerable<int>
+
+// Find specific elements
+bool anyGreaterThanTen = numbers.Any(n => n > 10);  // false
+int sum = numbers.Sum();  // 15
+
+// Note: LINQ operations don't modify the original stack
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Stack<T>.GetEnumerator()}$</span></summary>
+
+```csharp
+Stack<string> history = new Stack<string>();
+history.Push("First");
+history.Push("Second");
+history.Push("Third");
+// Stack: Third (top), Second, First
+
+// Standard iteration (doesn't modify the stack)
+foreach (string item in history)
+{
+    Console.WriteLine(item);
+}
+// Output: Third, Second, First (top to bottom)
+
+// Using enumerator directly
+using (IEnumerator<string> enumerator = history.GetEnumerator())
+{
+    while (enumerator.MoveNext())
+    {
+        string current = enumerator.Current;
+        Console.WriteLine(current);
+    }
+}
+
+// Process all items in stack order (modifies the stack)
+while (history.Count > 0)
+{
+    string item = history.Pop();
+    Console.WriteLine($"Processing: {item}");
+}
+// Output: Processing: Third, Processing: Second, Processing: First
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
+
+<details>
+<summary><span>$\color{#4FC3F7}{Stack<T> Properties}$</span></summary>
+
+```csharp
+Stack<int> numbers = new Stack<int>();
+numbers.Push(10);
+numbers.Push(20);
+numbers.Push(30);
+
+// Get item count
+int count = numbers.Count;  // 3
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Common Usage Patterns}$</span>
+```csharp
+// Undo functionality using a Stack
+Stack<Command> undoStack = new Stack<Command>();
+
+void ExecuteCommand(Command command)
+{
+    command.Execute();
+    undoStack.Push(command);
+}
+
+void Undo()
+{
+    if (undoStack.Count > 0)
+    {
+        Command command = undoStack.Pop();
+        command.Undo();
+    }
+}
+
+// DFS (Depth-First Search) using a Stack
+Stack<Node> nodesToVisit = new Stack<Node>();
+nodesToVisit.Push(rootNode);
+HashSet<Node> visited = new HashSet<Node>();
+
+while (nodesToVisit.Count > 0)
+{
+    Node current = nodesToVisit.Pop();
+    
+    if (visited.Contains(current))
+        continue;
+        
+    visited.Add(current);
+    
+    // Process current node
+    Console.WriteLine(current.Value);
+    
+    // Add child nodes to the stack
+    foreach (Node child in current.Children)
+    {
+        nodesToVisit.Push(child);
+    }
+}
+
+// Expression evaluation
+Stack<int> operands = new Stack<int>();
+foreach (string token in postfixExpression)
+{
+    if (int.TryParse(token, out int value))
+    {
+        operands.Push(value);
+    }
+    else // operator
+    {
+        int b = operands.Pop();
+        int a = operands.Pop();
+        
+        switch (token)
+        {
+            case "+": operands.Push(a + b); break;
+            case "-": operands.Push(a - b); break;
+            case "*": operands.Push(a * b); break;
+            case "/": operands.Push(a / b); break;
+        }
+    }
+}
+int result = operands.Pop();
+```
+
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Comparison of Queue vs Stack}$</span>
+```csharp
+/*
+LIFO vs FIFO:
+- Queue<T>: First-In-First-Out (FIFO) - first element added is the first one removed
+- Stack<T>: Last-In-First-Out (LIFO) - last element added is the first one removed
+
+Operations Comparison:
+- Queue<T>: Enqueue() adds to the end, Dequeue() removes from the front, Peek() examines the front
+- Stack<T>: Push() adds to the top, Pop() removes from the top, Peek() examines the top
+
+Performance:
+- Both Queue<T> and Stack<T> provide O(1) operations for adding/removing elements
+- Both use arrays internally (with resizing when needed)
+- Both perform linear O(n) search operations (Contains())
+
+When to Choose:
+- Queue<T>: When order needs to be preserved (message queues, breadth-first traversal)
+- Stack<T>: When you need to process elements in reverse order (undo functionality, depth-first traversal)
+*/
+```
+
 </details>
 
 <details>
