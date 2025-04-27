@@ -251,7 +251,291 @@ int upperBound = matrix.GetUpperBound(0);  // Usually length-1
 
 </details>
 
-### Lists
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Lists}$</span></summary>
+
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
+```csharp
+// Generic List
+List<type> listName;
+
+// Examples
+List<int> numbers;
+List<string> names;
+List<Person> people;  // Custom type
+```
+
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
+```csharp
+// Empty list
+List<int> numbers = new List<int>();
+
+// List with initial capacity
+List<string> names = new List<string>(10);  // Space for 10 items
+
+// Initialize with values
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+// Initialize from an array or collection
+int[] array = { 1, 2, 3 };
+List<int> numbers = new List<int>(array);
+```
+
+#### <span>$\large\color{#4FC3F7}{Accessing Elements}$</span>
+```csharp
+// Access by index
+List<string> fruits = new List<string> { "Apple", "Banana", "Cherry" };
+string fruit = fruits[1];  // "Banana"
+
+// Modify by index
+fruits[1] = "Blueberry";  // Change "Banana" to "Blueberry"
+
+// Check if an index is valid
+if (index >= 0 && index < fruits.Count)
+{
+    // Safe to access fruits[index]
+}
+```
+
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
+```csharp
+List<string> fruits = new List<string>();
+
+// Add elements
+fruits.Add("Apple");           // Add single item
+fruits.AddRange(new[] { "Banana", "Cherry" });  // Add multiple items
+
+// Insert at specific position
+fruits.Insert(1, "Blueberry");  // Insert at index 1
+fruits.InsertRange(2, new[] { "Mango", "Orange" });  // Insert multiple at index 2
+
+// Remove elements
+fruits.Remove("Banana");           // Remove by value (first occurrence)
+fruits.RemoveAt(0);                // Remove by index
+fruits.RemoveRange(1, 2);          // Remove range (start index, count)
+fruits.RemoveAll(f => f.Length < 6);  // Remove all matching a condition
+
+// Clear the list
+fruits.Clear();  // Remove all elements
+```
+
+#### <span>$\large\color{#f5750e}{Methods}$</span>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.Find() / FindAll()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 5, 12, 8, 15, 3, 20 };
+
+// Find first matching element
+int first = numbers.Find(n => n > 10);  // Returns 12
+
+// Find last matching element
+int last = numbers.FindLast(n => n > 10);  // Returns 20
+
+// Find all matching elements
+List<int> matches = numbers.FindAll(n => n > 10);  // Returns { 12, 15, 20 }
+
+// Find by index
+int index = numbers.FindIndex(n => n > 10);  // Returns 1 (index of 12)
+int lastIndex = numbers.FindLastIndex(n => n > 10);  // Returns 5 (index of 20)
+
+// Find with start index and count
+int indexInRange = numbers.FindIndex(2, 3, n => n > 10);  // Starts at index 2, checks 3 items
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.Sort()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 5, 2, 8, 1, 3 };
+
+// Sort entire list in ascending order
+numbers.Sort();  // Results in { 1, 2, 3, 5, 8 }
+
+// Sort with custom comparison
+numbers.Sort((a, b) => b.CompareTo(a));  // Descending order, results in { 8, 5, 3, 2, 1 }
+
+// Sort using a Comparison delegate
+numbers.Sort(delegate(int x, int y) { return x.CompareTo(y); });
+
+// Sort using a Comparer
+numbers.Sort(Comparer<int>.Default);
+
+// Sort a range (index, count)
+numbers = new List<int> { 5, 2, 8, 1, 3, 9 };
+numbers.Sort(1, 3, Comparer<int>.Default);  // Sort only items at index 1, 2, 3
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.Contains() / Exists()}$</span></summary>
+
+```csharp
+List<string> fruits = new List<string> { "Apple", "Banana", "Cherry" };
+
+// Check if list contains an element
+bool hasApple = fruits.Contains("Apple");  // true
+bool hasOrange = fruits.Contains("Orange");  // false
+
+// Check with custom equality comparer
+bool hasAppleIgnoreCase = fruits.Contains("apple", StringComparer.OrdinalIgnoreCase);  // true
+
+// Check using a predicate
+bool hasA = fruits.Exists(f => f.StartsWith("A"));  // true
+bool longFruit = fruits.Exists(f => f.Length > 10);  // false
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.ForEach()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+// Apply action to each element
+numbers.ForEach(n => Console.WriteLine(n));
+
+// Modify each element
+numbers.ForEach(n => n *= 2);  // Note: This doesn't actually modify the list items!
+
+// To modify each element
+for (int i = 0; i < numbers.Count; i++)
+{
+    numbers[i] *= 2;
+}
+
+// Or using a more complex action
+numbers.ForEach(delegate(int n) {
+    Console.WriteLine($"Processing {n}");
+    // More operations...
+});
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.ConvertAll()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+// Convert to a different type
+List<string> strings = numbers.ConvertAll(n => n.ToString());
+// Result: { "1", "2", "3", "4", "5" }
+
+// Transform values
+List<int> squared = numbers.ConvertAll(n => n * n);
+// Result: { 1, 4, 9, 16, 25 }
+
+// Convert to a complex type
+List<Person> people = numbers.ConvertAll(n => new Person { Id = n, Name = $"Person {n}" });
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.GetRange()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 10, 20, 30, 40, 50, 60 };
+
+// Get a range of elements
+List<int> subset = numbers.GetRange(1, 3);  // Start at index 1, get 3 items
+// Result: { 20, 30, 40 }
+
+// Clone a list
+List<int> clone = numbers.GetRange(0, numbers.Count);
+
+// Use GetRange with other methods
+numbers.GetRange(2, 2).ForEach(Console.WriteLine);  // Print items at index 2 and 3
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.BinarySearch()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 10, 20, 30, 40, 50 };  // Must be sorted!
+
+// Find item index
+int index = numbers.BinarySearch(30);  // Returns 2
+
+// If item not found, returns bitwise complement of the next larger item index
+int notFound = numbers.BinarySearch(35);  // Returns ~3 (complement of 3)
+
+// Convert negative result to insertion point
+if (index < 0)
+    index = ~index;  // Where the item should be inserted
+
+// Search with custom comparison
+index = numbers.BinarySearch(25, Comparer<int>.Default);
+
+// Search a range (index, count)
+index = numbers.BinarySearch(1, 3, 40, null);  // Search in items 1, 2, 3
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.TrueForAll()}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 2, 4, 6, 8, 10 };
+
+// Check if all elements satisfy a condition
+bool allEven = numbers.TrueForAll(n => n % 2 == 0);  // true
+bool allGreaterThan5 = numbers.TrueForAll(n => n > 5);  // false
+
+// Combining conditions
+bool validList = numbers.TrueForAll(n => n > 0 && n % 2 == 0);  // true
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{List<T>.IndexOf() / LastIndexOf()}$</span></summary>
+
+```csharp
+List<string> colors = new List<string> { "Red", "Green", "Blue", "Green", "Yellow" };
+
+// Find first occurrence
+int firstGreen = colors.IndexOf("Green");  // Returns 1
+
+// Find last occurrence
+int lastGreen = colors.LastIndexOf("Green");  // Returns 3
+
+// Find with start index
+int fromIndex = colors.IndexOf("Green", 2);  // Returns 3 (search starts at index 2)
+
+// Find with start index and count
+int inRange = colors.IndexOf("Green", 0, 2);  // Returns 1 (search first 2 items)
+
+// Case insensitive search
+int ignoreCase = colors.FindIndex(c => c.Equals("red", StringComparison.OrdinalIgnoreCase));  // Returns 0
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
+
+<details>
+<summary><span>$\color{#4FC3F7}{List<T> Properties}$</span></summary>
+
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+// Get item count
+int count = numbers.Count;  // 5
+
+// Get capacity (internal array size)
+int capacity = numbers.Capacity;  // Could be larger than Count
+
+// Set capacity explicitly
+numbers.Capacity = 10;  // Allocates space for 10 items
+
+// Optimize memory usage
+numbers.TrimExcess();  // Reduces capacity to match Count (if difference is significant)
+```
+</details>
+
+</details>
 
 ### Dictionaries
 - HashSets
