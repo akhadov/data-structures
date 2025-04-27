@@ -891,8 +891,275 @@ bool isReadOnly = ((ICollection<KeyValuePair<string, int>>)scores).IsReadOnly;  
 
 <details>
 <summary><span>$\Large\color{#4FC3F7}{HashSets}$</span></summary>
-- HashSet<T>
-- SortedSet<T>
+
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
+```csharp
+// Generic HashSet
+HashSet<type> setName;
+
+// Examples
+HashSet<int> uniqueNumbers;
+HashSet<string> uniqueWords;
+HashSet<Person> uniquePeople;  // Custom type
+```
+
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
+```csharp
+// Empty set
+HashSet<int> numbers = new HashSet<int>();
+
+// Set with initial capacity
+HashSet<string> words = new HashSet<string>(100);  // Space for 100 items
+
+// Initialize with custom comparer
+HashSet<string> caseInsensitiveWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+// Initialize with values
+HashSet<int> numbers = new HashSet<int> { 1, 2, 3, 4, 5 };
+
+// Initialize from an array or collection
+int[] array = { 1, 2, 3, 3, 2, 1 };  // Note: duplicates
+HashSet<int> uniqueNumbers = new HashSet<int>(array);  // Result: { 1, 2, 3 }
+```
+
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
+```csharp
+HashSet<string> fruits = new HashSet<string>();
+
+// Add elements
+bool added = fruits.Add("Apple");        // Returns true if added successfully
+bool duplicate = fruits.Add("Apple");    // Returns false (already exists)
+
+// Add multiple items
+fruits.UnionWith(new[] { "Banana", "Cherry", "Apple" });  // Apple is ignored as duplicate
+
+// Remove elements
+bool removed = fruits.Remove("Banana");     // Returns true if removed
+bool notFound = fruits.Remove("Mango");     // Returns false (not in set)
+
+// Remove elements matching a condition (.NET Core 2.0+ / .NET 5+)
+int removed = fruits.RemoveWhere(f => f.StartsWith("A"));  // Returns count of removed items
+
+// Clear the set
+fruits.Clear();  // Remove all elements
+```
+
+#### <span>$\large\color{#f5750e}{Methods}$</span>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T>.Contains()}$</span></summary>
+
+```csharp
+HashSet<string> fruits = new HashSet<string> { "Apple", "Banana", "Cherry" };
+
+// Check if set contains an element
+bool hasApple = fruits.Contains("Apple");  // true
+bool hasOrange = fruits.Contains("Orange");  // false
+
+// Case insensitive check (using a case-insensitive set)
+HashSet<string> caseInsensitiveFruits = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+{
+    "Apple", "Banana", "Cherry"
+};
+bool hasapple = caseInsensitiveFruits.Contains("apple");  // true
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T> Set Operations}$</span></summary>
+
+```csharp
+HashSet<int> set1 = new HashSet<int> { 1, 2, 3, 4, 5 };
+HashSet<int> set2 = new HashSet<int> { 3, 4, 5, 6, 7 };
+
+// Union (modifies set1 to include all elements from both sets)
+set1.UnionWith(set2);
+// Result: set1 = { 1, 2, 3, 4, 5, 6, 7 }
+
+// Intersection (modifies set1 to only include elements in both sets)
+set1 = new HashSet<int> { 1, 2, 3, 4, 5 };
+set1.IntersectWith(set2);
+// Result: set1 = { 3, 4, 5 }
+
+// Difference (modifies set1 to exclude elements in set2)
+set1 = new HashSet<int> { 1, 2, 3, 4, 5 };
+set1.ExceptWith(set2);
+// Result: set1 = { 1, 2 }
+
+// Symmetric Difference (elements in either set but not both)
+set1 = new HashSet<int> { 1, 2, 3, 4, 5 };
+set1.SymmetricExceptWith(set2);
+// Result: set1 = { 1, 2, 6, 7 }
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T> Relationship Methods}$</span></summary>
+
+```csharp
+HashSet<int> set1 = new HashSet<int> { 1, 2, 3 };
+HashSet<int> set2 = new HashSet<int> { 1, 2, 3, 4 };
+HashSet<int> set3 = new HashSet<int> { 5, 6, 7 };
+
+// Check if set is a proper subset of another set
+bool isProperSubset = set1.IsProperSubsetOf(set2);  // true (all elements in set1 are in set2, but set1 ≠ set2)
+
+// Check if set is a subset of another set
+bool isSubset = set1.IsSubsetOf(set2);  // true (all elements in set1 are in set2)
+bool isSelfSubset = set1.IsSubsetOf(set1);  // true (a set is always a subset of itself)
+
+// Check if set is a proper superset of another set
+bool isProperSuperset = set2.IsProperSupersetOf(set1);  // true (set2 has all elements of set1 plus more)
+
+// Check if set is a superset of another set
+bool isSuperset = set2.IsSupersetOf(set1);  // true (set2 has all elements of set1)
+
+// Check if sets have any elements in common
+bool overlaps = set1.Overlaps(set2);  // true (they share elements)
+bool noOverlap = set1.Overlaps(set3);  // false (no common elements)
+
+// Check if sets have exactly the same elements
+bool areEqual = set1.SetEquals(new HashSet<int> { 3, 2, 1 });  // true (order doesn't matter)
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T>.CopyTo()}$</span></summary>
+
+```csharp
+HashSet<string> fruits = new HashSet<string> { "Apple", "Banana", "Cherry", "Date", "Elderberry" };
+
+// Copy to array
+string[] array = new string[fruits.Count];
+fruits.CopyTo(array);
+// Result: array = { "Apple", "Banana", "Cherry", "Date", "Elderberry" } (order not guaranteed)
+
+// Copy to array with offset
+string[] largerArray = new string[10];
+largerArray[0] = "First";
+largerArray[1] = "Second";
+fruits.CopyTo(largerArray, 2);
+// Result: largerArray = { "First", "Second", "Apple", "Banana", "Cherry", "Date", "Elderberry", null, null, null }
+
+// Copy range to array (.NET 6+)
+string[] rangeArray = new string[3];
+fruits.CopyTo(rangeArray, 0, 3);
+// Copies first 3 elements (order not guaranteed)
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T>.TrimExcess()}$</span></summary>
+
+```csharp
+// Memory optimization
+HashSet<int> numbers = new HashSet<int>(1000);  // Start with large capacity
+
+// Add some items
+for (int i = 0; i < 100; i++)
+{
+    numbers.Add(i);
+}
+
+// Remove some items
+for (int i = 0; i < 50; i++)
+{
+    numbers.Remove(i);
+}
+
+// Trim excess capacity
+numbers.TrimExcess();  // Reduces memory usage when actual count is much less than capacity
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T> with LINQ}$</span></summary>
+
+```csharp
+HashSet<int> numbers = new HashSet<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+// Filter with LINQ
+HashSet<int> evenNumbers = new HashSet<int>(
+    numbers.Where(n => n % 2 == 0)
+);
+// Result: { 2, 4, 6, 8, 10 }
+
+// Transform with LINQ
+HashSet<string> numberStrings = new HashSet<string>(
+    numbers.Select(n => n.ToString())
+);
+// Result: { "1", "2", "3", ... "10" }
+
+// Find specific elements
+int firstGreaterThanFive = numbers.First(n => n > 5);  // 6
+bool anyGreaterThanTen = numbers.Any(n => n > 10);     // false
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{HashSet<T>.GetEnumerator()}$</span></summary>
+
+```csharp
+HashSet<char> letters = new HashSet<char> { 'a', 'b', 'c', 'd' };
+
+// Standard iteration
+foreach (char letter in letters)
+{
+    Console.WriteLine(letter);
+}
+
+// Using enumerator directly
+using (HashSet<char>.Enumerator enumerator = letters.GetEnumerator())
+{
+    while (enumerator.MoveNext())
+    {
+        char current = enumerator.Current;
+        Console.WriteLine(current);
+    }
+}
+
+// Convert to list or array if order needs to be preserved for later operations
+List<char> letterList = letters.ToList();
+letterList.Sort();  // Now you can sort or manipulate order
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
+
+<details>
+<summary><span>$\color{#4FC3F7}{HashSet<T> Properties}$</span></summary>
+
+```csharp
+HashSet<string> words = new HashSet<string> { "apple", "banana", "cherry" };
+
+// Get item count
+int count = words.Count;  // 3
+
+// Get the comparer being used
+IEqualityComparer<string> comparer = words.Comparer;
+
+// Check if set is read-only
+bool isReadOnly = ((ICollection<string>)words).IsReadOnly;  // False
+
+// Get capacity (.NET Core 2.1+ / .NET 5+)
+int capacity = words.EnsureCapacity(0);  // Returns current capacity without changing it
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Performance Characteristics}$</span>
+```csharp
+// HashSet<T> operations typically have O(1) time complexity:
+// - Add/Remove/Contains: O(1) average case
+// - Set operations (Union, Intersect, etc.): O(n) where n is the size of the smaller set
+// - Memory usage: Higher than List<T> for same number of elements due to hashing overhead
+
+// Use HashSet<T> when:
+// - You need a collection with unique elements
+// - Fast lookups/membership testing is important
+// - You need to perform set operations (union, intersection, etc.)
+// - Order of elements is not important
+```
+
 </details>
 
 <details>
