@@ -1,8 +1,11 @@
 # C# Data Structures
 
-## <a href="#arrays" style="color:#0055b7; font-size:1.5em;">Arrays</a>
+<details>
+<summary>
 
-<div id="arrays">
+## <font color="blue" size="6">Arrays</font>
+
+</summary>
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
@@ -91,7 +94,7 @@ int[] ages = { 30, 25, 35 };
 Array.Sort(ages, names);  // Sort names based on ages
 // Result: names = { "Bob", "Alice", "Charlie" }, ages = { 25, 30, 35 }
 ```
-</div>
+</details>
 
 <details>
 <summary><span style="color:blue">Array.Reverse()</span></summary>
