@@ -69,10 +69,10 @@ Array.Copy(numbers, 0, smallerArray, 0, indexToRemove);
 Array.Copy(numbers, indexToRemove + 1, smallerArray, indexToRemove, numbers.Length - indexToRemove - 1);
 ```
 
-#### <span>$\large\color{#9C27B0}{Methods}$</span>
+#### <span>$\large\color{#f5750e}{Methods}$</span>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Sort()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Sort()}$</span></summary>
 
 ```csharp
 // Sort array in ascending order
@@ -93,7 +93,7 @@ Array.Sort(ages, names);  // Sort names based on ages
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Reverse()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Reverse()}$</span></summary>
 
 ```csharp
 // Reverse entire array
@@ -109,7 +109,7 @@ Array.Reverse(values, 1, 3);  // Reverse 3 elements starting at index 1
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Clear()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Clear()}$</span></summary>
 
 ```csharp
 // Clear entire array (set to default values)
@@ -125,7 +125,7 @@ Array.Clear(names, 1, 2);  // Clear 2 elements starting at index 1
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Copy()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Copy()}$</span></summary>
 
 ```csharp
 // Copy entire array
@@ -142,7 +142,7 @@ Array.Copy(source, 1, partial, 0, 3);
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.IndexOf() / LastIndexOf()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.IndexOf() / LastIndexOf()}$</span></summary>
 
 ```csharp
 // Find first occurrence
@@ -161,7 +161,7 @@ int rangeIndex = Array.IndexOf(numbers, 20, 2);  // Start from index 2
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Resize()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Resize()}$</span></summary>
 
 ```csharp
 // Increase array size
@@ -177,7 +177,7 @@ Array.Resize(ref values, 3);
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Find() / FindAll()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Find() / FindAll()}$</span></summary>
 
 ```csharp
 // Find first matching element
@@ -196,7 +196,7 @@ int greaterThanTen = Array.Find(numbers, n => n > 10);
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.Exists() / TrueForAll()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.Exists() / TrueForAll()}$</span></summary>
 
 ```csharp
 // Check if any element satisfies a condition
@@ -211,7 +211,7 @@ bool allPositive = Array.TrueForAll(numbers, n => n > 0);
 </details>
 
 <details>
-<summary><span>$\color{#9C27B0}{Array.ConvertAll()}$</span></summary>
+<summary><span>$\color{#f5750e}{Array.ConvertAll()}$</span></summary>
 
 ```csharp
 // Convert array elements to different type
