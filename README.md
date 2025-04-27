@@ -537,11 +537,417 @@ numbers.TrimExcess();  // Reduces capacity to match Count (if difference is sign
 
 </details>
 
-### Dictionaries
-- HashSets
-  - HashSet<T>
-  - SortedSet<T>
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Dictionaries}$</span></summary>
 
-### FIFO/LIFO Collections
-- Queues
-- Stacks
+#### <span>$\large\color{#4FC3F7}{Declaration}$</span>
+```csharp
+// Generic Dictionary
+Dictionary<TKey, TValue> dictionaryName;
+
+// Examples
+Dictionary<int, string> employeeIds;
+Dictionary<string, decimal> prices;
+Dictionary<string, List<string>> categoryItems;  // Complex value type
+Dictionary<Person, Address> peopleAddresses;    // Custom types
+```
+
+#### <span>$\large\color{#4FC3F7}{Initialization}$</span>
+```csharp
+// Empty dictionary
+Dictionary<int, string> employees = new Dictionary<int, string>();
+
+// Dictionary with initial capacity
+Dictionary<string, decimal> prices = new Dictionary<string, decimal>(100);  // Space for 100 items
+
+// Initialize with custom comparer
+Dictionary<string, int> scores = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+// Initialize with values
+Dictionary<int, string> employees = new Dictionary<int, string>
+{
+    { 101, "John Doe" },
+    { 102, "Jane Smith" },
+    { 103, "Tom Brown" }
+};
+
+// Alternative initialization syntax
+Dictionary<int, string> employees = new Dictionary<int, string>
+{
+    [101] = "John Doe",
+    [102] = "Jane Smith",
+    [103] = "Tom Brown"
+};
+
+// Initialize from collection of KeyValuePair
+List<KeyValuePair<int, string>> pairs = GetKeyValuePairs();
+Dictionary<int, string> fromPairs = new Dictionary<int, string>(pairs);
+```
+
+#### <span>$\large\color{#4FC3F7}{Accessing Elements}$</span>
+```csharp
+Dictionary<int, string> employees = new Dictionary<int, string>
+{
+    { 101, "John Doe" },
+    { 102, "Jane Smith" }
+};
+
+// Access by key (throws KeyNotFoundException if key doesn't exist)
+string employee = employees[101];  // "John Doe"
+
+// Safely check and access
+if (employees.ContainsKey(103))
+{
+    string employee = employees[103];
+}
+
+// Using TryGetValue (preferred method)
+if (employees.TryGetValue(102, out string name))
+{
+    Console.WriteLine(name);  // "Jane Smith"
+}
+
+// Modifying values
+employees[101] = "John Smith";  // Update existing value
+
+// Adding new entries
+employees[104] = "Alice Johnson";  // Add new key-value pair
+```
+
+#### <span>$\large\color{#4FC3F7}{Adding and Removing Elements}$</span>
+```csharp
+Dictionary<string, decimal> prices = new Dictionary<string, decimal>();
+
+// Add elements
+prices.Add("Apple", 1.99m);  // Add single item
+// prices.Add("Apple", 2.49m);  // Would throw exception - key already exists
+
+// Check before adding
+if (!prices.ContainsKey("Banana"))
+{
+    prices.Add("Banana", 0.99m);
+}
+
+// Adding or updating (upsert)
+prices["Banana"] = 1.29m;  // Updates if exists, adds if not
+
+// Alternative safe add/update with TryAdd (.NET 5+)
+prices.TryAdd("Cherry", 3.49m);  // Returns false if key exists, doesn't throw
+
+// Remove elements
+prices.Remove("Apple");  // Remove by key, returns true if successful
+
+// Try to remove and get the value
+if (prices.Remove("Banana", out decimal bananaPrice))
+{
+    Console.WriteLine($"Removed Banana that cost {bananaPrice}");
+}
+
+// Clear the dictionary
+prices.Clear();  // Remove all elements
+```
+
+#### <span>$\large\color{#f5750e}{Methods}$</span>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue>.ContainsKey() / ContainsValue()}$</span></summary>
+
+```csharp
+Dictionary<string, int> scores = new Dictionary<string, int>
+{
+    { "Alice", 95 },
+    { "Bob", 80 },
+    { "Charlie", 95 }
+};
+
+// Check if dictionary contains a key
+bool hasAlice = scores.ContainsKey("Alice");  // true
+bool hasDave = scores.ContainsKey("Dave");    // false
+
+// Check if dictionary contains a value
+bool has95 = scores.ContainsValue(95);   // true
+bool has100 = scores.ContainsValue(100); // false
+
+// Note: ContainsValue is O(n) operation, searches through all values
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue>.TryGetValue()}$</span></summary>
+
+```csharp
+Dictionary<string, int> ages = new Dictionary<string, int>
+{
+    { "Alice", 25 },
+    { "Bob", 30 }
+};
+
+// Safe way to get a value without exceptions
+if (ages.TryGetValue("Alice", out int aliceAge))
+{
+    Console.WriteLine($"Alice is {aliceAge} years old");  // Alice is 25 years old
+}
+
+// When key doesn't exist
+if (!ages.TryGetValue("Charlie", out int charlieAge))
+{
+    Console.WriteLine("Charlie not found");  // Charlie not found
+    // Note: charlieAge is set to default(int) which is 0
+}
+
+// Inline usage with null-coalescing operator
+int bobAge = ages.TryGetValue("Bob", out int age) ? age : -1;  // 30
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue>.Keys / Values}$</span></summary>
+
+```csharp
+Dictionary<int, string> employees = new Dictionary<int, string>
+{
+    { 101, "John" },
+    { 102, "Jane" },
+    { 103, "Bob" }
+};
+
+// Get all keys
+ICollection<int> keys = employees.Keys;  // Collection of { 101, 102, 103 }
+foreach (int id in keys)
+{
+    Console.WriteLine($"Employee ID: {id}");
+}
+
+// Get all values
+ICollection<string> names = employees.Values;  // Collection of { "John", "Jane", "Bob" }
+foreach (string name in names)
+{
+    Console.WriteLine($"Employee name: {name}");
+}
+
+// Convert keys or values to arrays/lists
+int[] idArray = employees.Keys.ToArray();
+List<string> nameList = employees.Values.ToList();
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue>.GetEnumerator()}$</span></summary>
+
+```csharp
+Dictionary<string, decimal> prices = new Dictionary<string, decimal>
+{
+    { "Apple", 1.99m },
+    { "Banana", 0.99m },
+    { "Orange", 2.49m }
+};
+
+// Iterate through key-value pairs
+foreach (KeyValuePair<string, decimal> item in prices)
+{
+    Console.WriteLine($"{item.Key}: ${item.Value}");
+}
+
+// Deconstruction in C# 7.0+
+foreach (var (fruit, price) in prices)
+{
+    Console.WriteLine($"{fruit}: ${price}");
+}
+
+// Using enumerator directly
+using (Dictionary<string, decimal>.Enumerator enumerator = prices.GetEnumerator())
+{
+    while (enumerator.MoveNext())
+    {
+        KeyValuePair<string, decimal> current = enumerator.Current;
+        Console.WriteLine($"{current.Key}: ${current.Value}");
+    }
+}
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue>.EnsureCapacity() / TrimExcess()}$</span></summary>
+
+```csharp
+// Memory optimization methods (.NET Core 2.0+ / .NET 5+)
+Dictionary<int, string> largeDict = new Dictionary<int, string>();
+
+// Ensure capacity before adding many items
+largeDict.EnsureCapacity(10000);  // Pre-allocate space for efficiency
+
+// Add many items
+for (int i = 0; i < 10000; i++)
+{
+    largeDict[i] = $"Item {i}";
+}
+
+// Remove many items
+for (int i = 0; i < 8000; i++)
+{
+    largeDict.Remove(i);
+}
+
+// Trim excess capacity after removing items
+largeDict.TrimExcess();  // Reduce memory usage
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue> LINQ Extensions}$</span></summary>
+
+```csharp
+Dictionary<string, int> scores = new Dictionary<string, int>
+{
+    { "Alice", 95 },
+    { "Bob", 80 },
+    { "Charlie", 95 },
+    { "David", 65 }
+};
+
+// Filter with LINQ
+var highScores = scores.Where(kv => kv.Value >= 90)
+                      .ToDictionary(kv => kv.Key, kv => kv.Value);
+// Result: { "Alice": 95, "Charlie": 95 }
+
+// Transform with LINQ
+var letterGrades = scores.ToDictionary(
+    kv => kv.Key,
+    kv => kv.Value >= 90 ? "A" : kv.Value >= 80 ? "B" : kv.Value >= 70 ? "C" : "D"
+);
+// Result: { "Alice": "A", "Bob": "B", "Charlie": "A", "David": "D" }
+
+// Group by value
+var groupedByScore = scores.GroupBy(kv => kv.Value)
+                          .ToDictionary(g => g.Key, g => g.Select(kv => kv.Key).ToList());
+// Result: { 95: ["Alice", "Charlie"], 80: ["Bob"], 65: ["David"] }
+```
+</details>
+
+<details>
+<summary><span>$\color{#f5750e}{Dictionary<TKey, TValue> Specialized Operations}$</span></summary>
+
+```csharp
+// Merging dictionaries
+Dictionary<string, int> dict1 = new Dictionary<string, int> { { "A", 1 }, { "B", 2 } };
+Dictionary<string, int> dict2 = new Dictionary<string, int> { { "B", 3 }, { "C", 4 } };
+
+// Method 1: Loop through second dictionary (B gets overwritten)
+foreach (var item in dict2)
+{
+    dict1[item.Key] = item.Value;
+}
+// Result: dict1 = { "A": 1, "B": 3, "C": 4 }
+
+// Method 2: Only add keys that don't exist
+foreach (var item in dict2)
+{
+    if (!dict1.ContainsKey(item.Key))
+    {
+        dict1[item.Key] = item.Value;
+    }
+}
+
+// Copying a dictionary
+Dictionary<string, int> copy = new Dictionary<string, int>(dict1);
+
+// Comparing dictionaries
+bool areEqual = dict1.Count == dict2.Count &&
+                !dict1.Except(dict2).Any();
+```
+</details>
+
+#### <span>$\large\color{#4FC3F7}{Properties}$</span>
+
+<details>
+<summary><span>$\color{#4FC3F7}{Dictionary<TKey, TValue> Properties}$</span></summary>
+
+```csharp
+Dictionary<string, int> scores = new Dictionary<string, int>
+{
+    { "Alice", 95 },
+    { "Bob", 80 },
+    { "Charlie", 95 }
+};
+
+// Get item count
+int count = scores.Count;  // 3
+
+// Get key collection
+ICollection<string> keys = scores.Keys;
+
+// Get value collection
+ICollection<int> values = scores.Values;
+
+// Get the comparer being used
+IEqualityComparer<string> comparer = scores.Comparer;
+
+// Check if dictionary is read-only
+bool isReadOnly = ((ICollection<KeyValuePair<string, int>>)scores).IsReadOnly;  // False
+```
+</details>
+
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{HashSets}$</span></summary>
+- HashSet<T>
+- SortedSet<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span></summary>
+- Queue<T>
+- Stack<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Linked Lists}$</span></summary>
+- LinkedList<T>
+- LinkedListNode<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Sorted Collections}$</span></summary>
+- SortedList<TKey, TValue>
+- SortedDictionary<TKey, TValue>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Concurrent Collections}$</span></summary>
+- ConcurrentDictionary<TKey, TValue>
+- ConcurrentQueue<T>
+- ConcurrentStack<T>
+- ConcurrentBag<T>
+- BlockingCollection<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Immutable Collections}$</span></summary>
+- ImmutableArray<T>
+- ImmutableList<T>
+- ImmutableDictionary<TKey, TValue>
+- ImmutableHashSet<T>
+- ImmutableQueue<T>
+- ImmutableStack<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Observable Collections}$</span></summary>
+- ObservableCollection<T>
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Special Collections}$</span></summary>
+- ReadOnlyCollection<T>
+- BitArray
+- NameValueCollection
+</details>
+
+<details>
+<summary><span>$\Large\color{#4FC3F7}{Custom Data Structures}$</span></summary>
+- Priority Queue (built-in with .NET 6+)
+- Circular Buffer
+- Trie
+- Graph
+</details>
