@@ -1,6 +1,6 @@
 # C# Data Structures
 
-## 🔷 Arrays
+## $\textsf{\color{#326a95}{Arrays}}$
 <details>
 <summary><b>Click to expand</b></summary>
 
