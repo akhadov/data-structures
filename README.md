@@ -1,7 +1,8 @@
 # C# Data Structures
 
-<details>
-<summary>$\textsf{\color{#0d47a1}{\LARGE Arrays}}$</summary>
+## <a href="#arrays" style="color:#0055b7; font-size:1.5em;">Arrays</a>
+
+<div id="arrays">
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
@@ -90,7 +91,7 @@ int[] ages = { 30, 25, 35 };
 Array.Sort(ages, names);  // Sort names based on ages
 // Result: names = { "Bob", "Alice", "Charlie" }, ages = { 25, 30, 35 }
 ```
-</details>
+</div>
 
 <details>
 <summary><span style="color:blue">Array.Reverse()</span></summary>
