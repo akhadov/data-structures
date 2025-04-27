@@ -1,7 +1,7 @@
 # C# Data Structures
 
 <details>
-<summary><span>$\color{blue}{Arrays}$</span></summary>
+<summary><span># $\color{blue}{Arrays}$</span></summary>
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
