@@ -1,8 +1,7 @@
 # C# Data Structures
 
-## $\textsf{\color{#326a95}{Arrays}}$
 <details>
-<summary><b>Click to expand</b></summary>
+<summary>$\textsf{\color{#0d47a1}{\LARGE Arrays}}$</summary>
 
 #### <span style="color:blue">Declaration</span>
 ```csharp
