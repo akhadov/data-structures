@@ -1162,7 +1162,8 @@ int capacity = words.EnsureCapacity(0);  // Returns current capacity without cha
 
 </details>
 
-## <span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span>
+<details>
+<summary><span>$\Large\color{#4FC3F7}{FIFO/LIFO Collections}$</span></summary>
 
 <details>
 <summary><span>$\Large\color{#4FC3F7}{Queue\<T\>}$</span></summary>
